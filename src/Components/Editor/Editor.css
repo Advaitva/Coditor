@@ -1,0 +1,80 @@
+.Editor{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+
+}
+.Editor--Explorer{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    padding: 2em 0 1em 1em;
+    
+
+}
+.Editor--File,.Editor--FileActive{
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border-radius:  10px 0 0 10px;
+    padding: 1em;
+}
+.Editor--File:hover{
+    cursor: pointer;
+}
+.Editor--FileActive{
+    background-color: #4545ff;
+    font-weight: 600;
+}
+.Editor--Main{
+    width: 45%;
+    height: 100%;
+    border-left:  6px solid #4545ff;
+    border-radius:5px;
+    background: rgb(39, 40, 34);
+}
+.Editor--EditArea{
+    width: 98%;
+    position: relative;
+    
+}
+.Editor--TextArea{
+    /* background: rgb(39, 40, 34); */
+    width: 100%;
+    /* height: 90vh; */
+    border: none;
+    overflow: auto;
+    outline: none;
+    margin: 1.5em 1em;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none; 
+    z-index: 1;
+    color: transparent;
+    background: transparent;
+    caret-color: white;
+}
+.Editor--View{
+    width: 45%;
+}
+.Editor--EditHighlight,.Editor--TextArea{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding:1rem 1rem;
+  border: 0;
+  width: calc(100% - 32px);
+  height: 100vh;
+  font-size: 12pt;
+  font-family: monospace;
+  line-height: 18pt;
+  overflow: auto;
+  white-space: nowrap; 
+}
+.Editor--EditHighlight{
+    /* height: 100vh; */
+    overflow-y: auto;
+    z-index: 0;
+}

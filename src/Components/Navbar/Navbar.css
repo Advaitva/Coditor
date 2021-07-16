@@ -1,0 +1,11 @@
+.Navbar{
+    width: 100vw;
+    height: 8vh;
+    border-bottom: 1px solid rgb(160, 160, 160);
+}
+.Navbar--Title{
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+    font-weight: 700;
+}
