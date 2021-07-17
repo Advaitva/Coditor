@@ -1,6 +1,6 @@
 import React from 'react';
-// import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-// import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
 import { Controlled as CodeEditor } from 'react-codemirror2'
 import 'codemirror/lib/codemirror.css';
@@ -20,7 +20,24 @@ class Editor extends React.Component{
             1:"",
             2: "",
         },
-        active:0
+        active: 0,
+        url:""
+    }
+    async componentDidMount() {
+        
+        let id = this.props.match.params.id;
+        if (id !== undefined) {
+            let url="https://pastebin.com/raw/"+id
+            try {
+                let res = await axios.get(url);
+                // let 
+                this.setState({ code: res.data });
+            } catch (e) {
+                console.log(e);
+                
+            }
+        }
+        
     }
     onEditCode = (e, active) => {
         let { data, code } = this.state;
@@ -34,11 +51,29 @@ class Editor extends React.Component{
     onClickFile = (id) => {
         this.setState({ active: id });
     }
-   
+    onSaveCode = async () => {
+        const params = new URLSearchParams();
+        params.append("api_dev_key", "M5DdG_pG8S-0tckZ_R7Pav67v7UyG4jI");
+        params.append( "api_option", "paste");
+        params.append( "api_paste_code",this.state.code);
+        let url="https://pastebin.com/api/api_post.php"
+        try {
+            let res = await axios.post(url, params);
+            console.log(res);
+            let path = res.data;
+            const code = path.substring(path.lastIndexOf('/') + 1);
+            let urlPaste = "https://advaitva.github.io/edit/" + code;
+            this.setState({ url:urlPaste });
+            
+        } catch (e) {
+            console.log(e);
+            this.setState({ url: "Error occured!" });
+        }
+   }
     render() {
         let files = ["Index.html", "Index.js", "Index.css"];
         let lang = ["xml", "javascript", "css"];
-        let { code,active,data } = this.state;
+        let { code,active,data,url } = this.state;
         
 
         return (
@@ -52,17 +87,12 @@ class Editor extends React.Component{
                             )
                         })
                     }
+                    <div className="Editor--SaveBtn" onClick={() => this.onSaveCode()}>Save Code</div>
+                    { url}
                 </div>
                 <div className="Editor--Main">
                     <div className="Editor--EditArea">
-{/*                         
-                        <textarea className="Editor--TextArea" placeholder="Just start coding..." value={data[active]} id="code"  onChange={(e)=>this.onEditCode(e,active)} spellCheck="false">
-                        </textarea> */}
-                        {/* <div className="Editor--EditHighlight">
-                            <SyntaxHighlighter language={files[active].split(".")[1]} style={okaidia} >
-                                {data[active]}
-                            </SyntaxHighlighter>
-                        </div> */}
+
                         <CodeEditor
                             height="100px"
                         value={data[active]}
@@ -95,4 +125,4 @@ class Editor extends React.Component{
         )
     }
 }
-export default Editor;
+export default withRouter(Editor);

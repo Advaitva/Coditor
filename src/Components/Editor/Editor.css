@@ -77,3 +77,15 @@
     overflow-y: auto;
     z-index: 0;
 }
+.Editor--SaveBtn{
+    background-color: #4545ff;
+    align-self: center;
+    font-weight: 600;
+    padding: .8em;
+    width: fit-content;
+    margin-top: 25em;
+    border-radius: 10px;
+}
+.Editor--SaveBtn:hover{
+    cursor: pointer;
+}

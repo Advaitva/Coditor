@@ -6,7 +6,7 @@ class View extends React.Component{
     render() {
         return (
             <div className="View">
-                Live View
+                <div className="View--Title">Live View</div>
                 <iframe srcDoc={this.props.code} title="liveview" frameBorder="0" className="View--Frame"></iframe>
             </div>
         )
