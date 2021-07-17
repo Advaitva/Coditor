@@ -25,18 +25,18 @@ class Editor extends React.Component{
     }
     async componentDidMount() {
         
-        let id = this.props.match.params.id;
-        if (id !== undefined) {
-            let url="https://pastebin.com/raw/"+id
-            try {
-                let res = await axios.get(url);
-                // let 
-                this.setState({ code: res.data });
-            } catch (e) {
-                console.log(e);
+        // let id = this.props.match.params.id;
+        // if (id !== undefined) {
+        //     let url="https://pastebin.com/raw/"+id
+        //     try {
+        //         let res = await axios.get(url);
+        //         // let 
+        //         this.setState({ code: res.data });
+        //     } catch (e) {
+        //         console.log(e);
                 
-            }
-        }
+        //     }
+        // }
         
     }
     onEditCode = (e, active) => {
@@ -125,4 +125,5 @@ class Editor extends React.Component{
         )
     }
 }
-export default withRouter(Editor);
+// export default withRouter(Editor);
+export default Editor;
