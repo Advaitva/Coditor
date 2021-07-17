@@ -1,18 +1,18 @@
 import React from "react";
-// import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import './App.css';
 
 import Home from "./Home/Home";
-// import Landing from './Landing/Landing';
+import Landing from './Landing/Landing';
 class App extends React.Component {
   render() {
     
     return (
       
       <div className="App">
-        <Home/>
-        {/* <Router>
+        
+        <Router>
             <Switch>
               <Route exact path="/">
                 <Landing/>
@@ -25,7 +25,7 @@ class App extends React.Component {
                 <Home/>
                 </Route>
             </Switch> 
-        </Router> */}
+        </Router>
        
     </div>
   );
